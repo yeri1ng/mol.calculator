@@ -1,7 +1,6 @@
 import re
 import streamlit as st
 
-# 1. 화학식 파싱 함수
 def parse_formula(formula):
     tokens = re.findall(r'([A-Z][a-z]?|\(|\)|\d+)', formula)
     stack = [{}]
@@ -35,7 +34,6 @@ def parse_formula(formula):
 
     return stack.pop()
 
-# 2. 원자량 데이터
 atomic_weights = {
     'H': 1.008,
     'He': 4.0026,
@@ -62,7 +60,6 @@ atomic_weights = {
     'Zn': 65.38,
 }
 
-# 3. 몰질량 계산 함수
 def calculate_molar_mass(parsed_formula):
     total = 0
     for elem, count in parsed_formula.items():
@@ -71,7 +68,6 @@ def calculate_molar_mass(parsed_formula):
         total += atomic_weights[elem] * count
     return total
 
-# 4. Streamlit 앱
 st.title("몰 계산기")
 
 formula = st.text_input("화학식을 입력하세요 (예: C6H12O6, Fe2(SO4)3)")
